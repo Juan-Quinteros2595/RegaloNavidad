@@ -1,0 +1,412 @@
+/* Estilos generales */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    background-color: black;
+}
+
+/* Contenedor principal del árbol */
+#tree-container {
+    position: fixed;
+    /* Fijo para mantenerlo centrado siempre */
+    top: 50%;
+    /* Centrado verticalmente */
+    left: 50%;
+    /* Centrado horizontalmente */
+    transform: translate(-50%, -50%);
+    /* Ajusta el centro exacto */
+    width: 100%;
+    /* 70% del ancho total de la pantalla */
+    height: 100%;
+    /* 70% del alto total de la pantalla */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: black;
+    /* Fondo negro para disimular bordes del video */
+    border-radius: 0;
+    /* Sin bordes */
+    z-index: -1;
+}
+
+/* Video del árbol */
+#tree-video {
+    width: 100%;
+    /* Ocupar todo el ancho del contenedor */
+    height: 100%;
+    /* Ocupar todo el alto del contenedor */
+    object-fit: contain;
+    /* Mantiene proporciones al recortar */
+    position: fixed;
+    z-index: -1;
+}
+
+/* Contenedor de los regalos */
+#gifts {
+    position: absolute;
+    bottom: 50px;
+    /* Ajusta la distancia respecto al borde inferior */
+    width: 90%;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Base general para todos los regalos */
+.gift-box {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gift-box:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+}
+
+/* Tapa del regalo */
+.gift-lid {
+    width: 100%;
+    height: 20%;
+    background: linear-gradient(45deg, #ff0000, #ff7373);
+    /* Tapa roja común */
+    border-radius: 5px 5px 0 0;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.gift-lid::before,
+.gift-lid::after {
+    content: '';
+    position: absolute;
+    background: #ffeb3b;
+    border-radius: 2px;
+}
+
+.gift-lid::before {
+    width: 100%;
+    height: 4px;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+
+.gift-lid::after {
+    width: 4px;
+    height: 100%;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+}
+
+/* Base personalizada utilizando data-target */
+.gift-box[data-target="gift1"] .gift-base {
+    background: linear-gradient(45deg, #d50000, #ff1744);
+    /* Rojo navideño */
+    border: 2px solid #b71c1c;
+    align-items: center;
+}
+
+.gift-box[data-target="gift2"] .gift-base {
+    background: linear-gradient(45deg, #b0bec5, #eceff1);
+    /* Gris metalizado con tonos blancos */
+    border: 2px solid #90a4ae;
+}
+
+.gift-box[data-target="gift3"] .gift-base {
+    background: linear-gradient(45deg, #880e4f, #001a01);
+    /* Bordo con tonos verdes */
+    border: 1px solid #4a148c;
+}
+
+.gift-box[data-target="gift4"] .gift-base {
+    background: linear-gradient(45deg, #0288d1, #00bcd4);
+    /* Aqua-azulmarino */
+    border: 2px solid #01579b;
+}
+
+.gift-box[data-target="gift5"] .gift-base {
+    background: linear-gradient(45deg, #fdd835, #cfd8dc);
+    /* Dorado y plateado */
+    border: 2px solid #ffcc00;
+}
+
+.gift-box[data-target="gift6"] .gift-base {
+    background: linear-gradient(45deg, #f8bbd0, #f48fb1);
+    /* Rosa crema y pastel */
+    border: 2px solid #ec407a;
+}
+
+/* Imagen del regalo */
+.gift {
+    width: 80%;
+    height: auto;
+    border-radius: 3px;
+}
+
+
+.hidden {
+    display: none;
+}
+
+/* Contenedor del popup */
+#gift-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(45deg, #ff0040, #ff7373);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5);
+    border: 5px solid #ffd700;
+    z-index: 1000;
+    animation: popupFadeIn 0.5s ease;
+    width: auto;
+    /* Tamaño predeterminado */
+    max-width: 90%;
+    /* Asegura que no exceda el ancho en móviles */
+    max-height: 80%;
+    /* Asegura que no exceda el alto en móviles */
+    overflow-y: auto;
+    /* Permite scroll interno si es necesario */
+}
+
+/* Animación para el popup */
+@keyframes popupFadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* Contenido del popup */
+.popup-content {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 15px;
+    font-family: 'Satisfy', cursive;
+    text-align: center;
+    color: #ff0040;
+    font-size: 18px;
+    text-shadow: 0 0 3px rgba(255, 0, 0, 0.5);
+    word-wrap: break-word;
+    line-height: 1.5;
+}
+
+/* Botón de cerrar */
+#close-popup {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #ffd700;
+    border: none;
+    border-radius: 10px;
+    color: #ff0040;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#close-popup:hover {
+    background-color: #ffe066;
+    transform: scale(1.1);
+}
+
+/* Botón de mute */
+#mute-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.7);
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+#mute-button:hover {
+    background: rgba(255, 255, 255, 1);
+}
+
+/* Contenedor de copos de nieve */
+#snowflakes-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    /* Evita interferencia con clics */
+    overflow: hidden;
+    z-index: 1000;
+    /* Asegura que estén encima del contenido */
+}
+
+/* Estilo de los copos de nieve */
+.snowflake {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: fallWithSwing linear infinite;
+}
+
+/* Animación de caída */
+@keyframes fall {
+    0% {
+        transform: translateY(-100px);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+
+/* Animación de caída con oscilación horizontal */
+@keyframes fallWithSwing {
+    0% {
+        transform: translateX(0) translateY(-100px);
+        opacity: 0.5;
+    }
+    
+    25% {
+        transform: translateX(10px) translateY(25vh);
+    }
+
+    50% {
+        transform: translateX(-10px) translateY(50vh);
+    }
+
+    75% {
+        transform: translateX(10px) translateY(75vh);
+    }
+
+    100% {
+        transform: translateX(-10px) translateY(100vh);
+        opacity: 0;
+    }
+}
+
+/* Media Queries para dispositivos móviles */
+@media (max-width: 768px) {
+
+    /* Contenedor del árbol */
+    #tree-container {
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Video del árbol */
+    #tree-video {
+        width: 100%;
+        height: auto;
+        /* Mantener proporciones */
+        object-fit: contain;
+    }
+
+    /* Contenedor de los regalos */
+    #gifts {
+        bottom: 20px;
+        /* Reducir el espacio inferior */
+        gap: 5px;
+        /* Reducir el espacio entre regalos */
+    }
+
+    /* Cajas de regalo */
+    .gift-box {
+        width: 80px;
+        /* Reducir tamaño de las cajas */
+        height: 80px;
+    }
+
+    #gift-popup {
+        padding: 20px; /* Ajustar padding */
+        width: 90%; /* Usar el 90% del ancho de la pantalla */
+        max-height: 70%; /* Reducir el alto máximo */
+    }
+
+    .popup-content {
+        font-size: 16px;
+        /* Reducir el tamaño del texto */
+        padding: 15px;
+        /* Reducir padding */
+    }
+
+    /* Botón de cerrar */
+    #close-popup {
+        font-size: 14px;
+        /* Reducir tamaño de fuente */
+        padding: 8px 15px;
+        /* Ajustar tamaño del botón */
+    }
+
+    /* Botón de mute */
+    #mute-button {
+        font-size: 16px;
+        /* Ajustar tamaño del ícono */
+        padding: 8px;
+    }
+
+    /* Copos de nieve */
+    .snowflake {
+        width: 3px;
+        /* Reducir tamaño de los copos */
+        height: 3px;
+    }
+}
+
+/* Media Queries para pantallas ultra pequeñas */
+@media (max-width: 480px) {
+
+    #gift-popup {
+            padding: 15px;
+            width: 95%;
+            max-height: 65%;
+            /* Asegura que el popup no ocupe toda la pantalla */
+    }
+
+    .popup-content {
+        font-size: 14px;
+        /* Reducir aún más el tamaño del texto */
+        padding: 10px;
+    }
+
+    #close-popup {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+
+    /* Cajas de regalo */
+    .gift-box {
+        width: 60px;
+        /* Reducir aún más las cajas */
+        height: 60px;
+    }
+
+    /* Tapa y base del regalo */
+    .gift-lid,
+    .gift-base {
+        border-radius: 3px;
+    }
+
+}

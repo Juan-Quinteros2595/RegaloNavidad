@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <title>Árbol de Navidad</title>
+</head>
+
+<body>
+    <div id="snowflakes-container"></div>
+    <div id="tree-container">
+        <!-- Video del árbol navideño -->
+        <video id="tree-video" autoplay loop muted>
+            <source src="arbol.mp4" type="video/mp4">
+            Tu navegador no soporta videos.
+        </video>
+
+        <!-- Contenedor de los regalos -->
+        <div id="gifts">
+            <div class="gift-box" data-target="gift1">
+                <div class="gift-lid"></div>
+                <div class="gift-base">
+                    <img src="Imagenes/Regalo1.png" class="gift" alt="Regalo 1">
+                </div>
+            </div>
+            <div class="gift-box" data-target="gift2">
+                <div class="gift-lid"></div>
+                <div class="gift-base">
+                    <img src="Imagenes/Regalo2.png" class="gift" alt="Regalo 2">
+                </div>
+            </div>
+            <div class="gift-box" data-target="gift3">
+                <div class="gift-lid"></div>
+                <div class="gift-base">
+                    <img src="Imagenes/Regalo3.png" class="gift" alt="Regalo 3">
+                </div>
+            </div>
+            <div class="gift-box" data-target="gift4">
+                <div class="gift-lid"></div>
+                <div class="gift-base">
+                    <img src="Imagenes/Regalo4.png" class="gift" alt="Regalo 4">
+                </div>
+            </div>
+            <div class="gift-box" data-target="gift5">
+                <div class="gift-lid"></div>
+                <div class="gift-base">
+                    <img src="Imagenes/Regalo5.png" class="gift" alt="Regalo 5">
+                </div>
+            </div>
+            <div class="gift-box" data-target="gift6">
+                <div class="gift-lid"></div>
+                <div class="gift-base">
+                    <img src="Imagenes/Regalo6.png" class="gift" alt="Regalo 6">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Música de fondo -->
+    <audio id="background-music" loop>
+        <source src="music/christmas.mp3" type="audio/mpeg">
+        Tu navegador no soporta audio.
+    </audio>
+
+    <!-- Botón para activar el sonido -->
+    <button id="mute-button">🔊</button>
+
+    <!-- Contenedor emergente del regalo seleccionado -->
+    <div id="gift-popup" class="hidden">
+        <div class="popup-content">
+            <div class="gift-animation">    
+                <!-- Aquí se generará dinámicamente el regalo seleccionado -->
+            </div>
+            <button id="close-popup">X</button>
+        </div>
+    </div>
+
+    <!-- Script -->
+    <script src="script.js"></script>
+</body>
+
+</html>
